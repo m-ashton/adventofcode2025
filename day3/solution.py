@@ -1,5 +1,4 @@
 import sys
-from functools import reduce
 
 def max_joltage(battery, length = 2):
     digits = []
