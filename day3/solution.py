@@ -5,9 +5,7 @@ def max_joltage(battery):
     most_significant_digit = -1
     least_significant_digit = -1
     sig_dig_pos = 0
-    for i, c in enumerate(battery):
-        if i == len(battery) - 1:
-            continue
+    for i, c in enumerate(battery[0:-1]):
         if int(c) > most_significant_digit:
             most_significant_digit = int(c)
             sig_dig_pos = i
