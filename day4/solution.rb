@@ -14,7 +14,7 @@ def accessible_rolls(grid)
       (0...size).each do |y|
         next if grid[[x, y]] == '.'
 
-        roll_count = adjacent_positions(x, y).map { |pos| grid[pos] }.count('@')
+        roll_count = adjacent_positions(x, y).count { |pos| grid[pos] == '@' }
 
         accessible_rolls.append([x, y]) if roll_count < 4
       end
