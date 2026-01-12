@@ -46,4 +46,6 @@ def part2
   invalid_id_sum
 end
 
-ARGV[0] == '2' ? puts(part2) : puts(part1)
+if $PROGRAM_NAME == __FILE__
+  ARGV[0] == '2' ? puts(part2) : puts(part1)
+end

@@ -41,4 +41,6 @@ def part2
   zeroes
 end
 
-ARGV[0] == '2' ? puts(part2) : puts(part1)
+if $PROGRAM_NAME == __FILE__
+  ARGV[0] == '2' ? puts(part2) : puts(part1)
+end
