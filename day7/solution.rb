@@ -35,10 +35,12 @@ def part2
   # beams = Hash.new { |h, k| h[k] = 0 }
   # beams[start_pos[0]] = 1
   beams = [start_pos[0]]
-  grid.each_value do |splitter_positions|
+  grid.each_value.with_index do |splitter_positions, i|
+    puts "calculating run #{i}"
     # split_beams, continued_beams = beams.partition { |beam, _| splitter_positions.include?(beam) }
     split_beams, continued_beams = beams.partition { |beam| splitter_positions.include?(beam) }
     beams = split_beams.map { |x| [x - 1, x + 1] }.flatten + continued_beams
+    puts beams.inspect
     # new_beams = Hash.new { |h, k| h[k] = 0 }
     # split_beams.each do |beam|
       # x = beam[0]
