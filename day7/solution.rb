@@ -32,24 +32,27 @@ end
 
 def part2
   start_pos, grid = read_input('sample.txt')
-  beams = Hash.new { |h, k| h[k] = 0 }
-  beams[start_pos[0]] = 1
+  # beams = Hash.new { |h, k| h[k] = 0 }
+  # beams[start_pos[0]] = 1
+  beams = [start_pos[0]]
   grid.each_value do |splitter_positions|
-    split_beams, continued_beams = beams.partition { |beam, _| splitter_positions.include?(beam) }
-    new_beams = Hash.new { |h, k| h[k] = 0 }
-    split_beams.each do |beam|
-      x = beam[0]
-      new_beams[x + 1] += 1
-      new_beams[x - 1] += 1
-    end
-    continued_beams.each do |beam|
-      x = beam[0]
-      new_beams[x] += 1
-    end
-    beams = new_beams
-    puts beams.inspect
+    # split_beams, continued_beams = beams.partition { |beam, _| splitter_positions.include?(beam) }
+    split_beams, continued_beams = beams.partition { |beam| splitter_positions.include?(beam) }
+    beams = split_beams.map { |x| [x - 1, x + 1] }.flatten + continued_beams
+    # new_beams = Hash.new { |h, k| h[k] = 0 }
+    # split_beams.each do |beam|
+      # x = beam[0]
+      # new_beams[x + 1] += 1
+      # new_beams[x - 1] += 1
+    # end
+    # continued_beams.each do |beam|
+      # x = beam[0]
+      # new_beams[x] += 1
+    # end
+    # beams = new_beams
   end
-  beams.values.sum
+  # beams.values.sum
+  beams.count
 end
 
 if $PROGRAM_NAME == __FILE__
