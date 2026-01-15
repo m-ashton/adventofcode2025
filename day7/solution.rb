@@ -31,6 +31,25 @@ def part1
 end
 
 def part2
+  start_pos, grid = read_input('sample.txt')
+  beams = Hash.new { |h, k| h[k] = 0 }
+  beams[start_pos[0]] = 1
+  grid.each_value do |splitter_positions|
+    split_beams, continued_beams = beams.partition { |beam, _| splitter_positions.include?(beam) }
+    new_beams = Hash.new { |h, k| h[k] = 0 }
+    split_beams.each do |beam|
+      x = beam[0]
+      new_beams[x + 1] += 1
+      new_beams[x - 1] += 1
+    end
+    continued_beams.each do |beam|
+      x = beam[0]
+      new_beams[x] += 1
+    end
+    beams = new_beams
+    puts beams.inspect
+  end
+  beams.values.sum
 end
 
 if $PROGRAM_NAME == __FILE__
