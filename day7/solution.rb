@@ -21,8 +21,7 @@ def part1
   start_pos, grid = read_input('input.txt')
   splits = 0
   beams = [start_pos[0]]
-  (start_pos[1]..grid.keys.max).each do |y|
-    splitter_positions = grid[y]
+  grid.each_value do |splitter_positions|
     split_beams, continued_beams = beams.partition { |beam| splitter_positions.include?(beam) }
     splits += split_beams.count
     beams = split_beams.map { |x| [x - 1, x + 1] }.flatten + continued_beams
